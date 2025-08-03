@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joseph Munene - Graphic Designer Portfolio</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fafb;
+      color: #222;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #1e40af;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+    }
+
+    header {
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #2563eb;
+    }
+    .logo svg {
+      width: 32px;
+      height: 32px;
+      fill: #2563eb;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Hamburger for mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: #2563eb;
+      border-radius: 2px;
+    }
+
+    /* Mobile nav open */
+    .nav-active {
+      display: flex !important;
+      flex-direction: column;
+      position: absolute;
+      background: #ffffff;
+      top: 64px;
+      right: 1.5rem;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.2);
+      width: 180px;
+      z-index: 9999;
+    }
+
+    /* Sections */
+    section {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+      color: #111827;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 0.3rem;
+      width: fit-content;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+      color: #2563eb;
+    }
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #374151;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 5rem 1rem 6rem;
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      color: white;
+      border-radius: 12px;
+      margin-top: 1rem;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    }
+    .hero p {
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #2563eb;
+      font-weight: 700;
+      padding: 0.8rem 1.6rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border: none;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    .btn-primary:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    /* About Section */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    .about-text {
+      flex: 1 1 320px;
+      font-size: 1.1rem;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+    .about-image {
+      flex: 1 1 280px;
+      text-align: center;
+    }
+    .about-image img {
+      border-radius: 50%;
+      max-width: 280px;
+      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
+    }
+
+    /* Services Section */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+    .service-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+    }
+    .service-icon {
+      font-size: 2.6rem;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      margin-bottom: 0.8rem;
+    }
+
+    /* Projects Section */
+    .projects {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      transition: box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+    .project-image {
+      height: 180px;
+      overflow: hidden;
+    }
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+    .project-content {
+      padding: 1rem 1.5rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-content h3 {
+      margin-bottom: 0.5rem;
+    }
+    .project-content p {
+      flex-grow: 1;
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-bottom: 1rem;
+    }
+    .project-link {
+      font-weight: 600;
+      color: #2563eb;
+      align-self: flex-start;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    .project-link:hover {
+      color: #1e40af;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background: #e0e7ff;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      margin-top: 3rem;
+      color: #1e293b;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.15);
+    }
+    .testimonial {
+      margin-bottom: 2rem;
+      font-style: italic;
+      font-size: 1.1rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+    .testimonial::before {
+      content: '“';
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 3rem;
+      color: #2563eb;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .testimonial-author {
+      margin-top: 0.6rem;
+      font-weight: 700;
+      font-style: normal;
+      color: #1e40af;
+    }
+
+    /* Contact Section */
+    .contact {
+      text-align: center;
+      padding: 3rem 1rem 5rem;
+    }
+    .contact h2 {
+      margin-bottom: 1rem;
+    }
+    .contact p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #374151;
+    }
+    .contact a.email-link {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #2563eb;
+      text-decoration: underline;
+    }
+    .contact a.email-link:hover {
+      color: #1e40af;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: #f3f4f6;
+      font-size: 0.9rem;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      margin-top: 4rem;
+    }
+
+    /* Animations - fade in on scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .about {
+        flex-direction: column;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#" class="logo" aria-label="Joseph Munene Logo">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <circle cx="32" cy="32" r="30" stroke="none" fill="currentColor" />
+          <path fill="#fff" d="M20 44l8-24 8 24H20z" />
+        </svg>
+        Joseph Munene
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Hi, I'm Joseph Munene</h1>
+      <p>Graphic Designer & Visual Storyteller creating bold and meaningful brand identities.</p>
+      <a href="#projects" class="btn-primary" aria-label="View my work">View My Work</a>
+    </section>
+
+    <section id="about" class="about fade-in">
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>I'm a passionate graphic designer who loves to bring stories to life through thoughtful and creative design. My approach combines strategy with aesthetics to deliver visuals that connect and inspire.</p>
+        <p>With years of experience collaborating with startups and creative teams, I focus on brand identity, digital design, and creating meaningful experiences that help brands stand out.</p>
+      </div>
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80" alt="Joseph Munene smiling portrait" />
+      </div>
+    </section>
+
+    <section id="services" class="fade-in">
+      <h2>Services</h2>
+      <div class="services">
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Brand Identity Design</h3>
+          <p>Creating unique logos, color schemes, and brand guidelines that resonate with your audience.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💻</div>
+          <h3>Web & UI Design</h3>
+          <p>Designing clean and user-friendly websites and interfaces that enhance user experience.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🖌️</div>
+          <h3>Print & Marketing Materials</h3>
+          <p>Designing brochures, flyers, posters, and social media graphics that catch the eye.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="fade-in">
+      <h2>Projects</h2>
+      <div class="projects">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Project 1 - Branding" />
+          </div>
+          <div class="project-content">
+            <h3>Startup Brand Identity</h3>
+            <p>Developed a complete brand identity for a tech startup including logo, typography, and website design.</p>
+            <a href="#" class="project-link" tabindex="-1">Details coming soon</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80" alt="Project 2 - UI Design" />
+          </div>
+          <div class="project-content">
+            <h3>Web App UI Design</h3>
+            <p>Designed a clean and intuitive user interface for a SaaS dashboard platform.</p>
+            <a href="#" class="project-link" tabindex="-1">Details coming soon</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Project 3 - Print Marketing" />
+          </div>
+          <div class="project-content">
+            <h3>Marketing Materials</h3>
+            <p>Created eye-catching print brochures and social media graphics for a non-profit event.</p>
+            <a href="#" class="project-link" tabindex="-1">Details coming soon</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials fade-in">
+      <h2>Testimonials</h2>
+      <blockquote class="testimonial">
+        Joseph’s creativity and professionalism took our branding to the next level. Highly recommended!
+        <div class="testimonial-author">— Sarah K., CEO, TechStart</div>
+      </blockquote>
+      <blockquote class="testimonial">
+        An excellent designer who understood our vision and delivered beyond expectations.
+        <div class="testimonial-author">— Mark D., Founder, GreenLeaf</div>
+      </blockquote>
+    </section>
+
+    <section id="contact" class="contact fade-in">
+      <h2>Contact Me</h2>
+      <p>Have a project or just want to say hello? Reach out — I’d love to connect!</p>
+      <a href="mailto:Josephmunene1964@gmail.com" class="email-link" aria-label="Send email to Joseph Munene">Josephmunene1964@gmail.com</a>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Joseph Munene. All rights reserved.
+  </footer>
+
+  <script>
+    // Hamburger toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active');
+    });
+    // Close nav on link click (mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(window.innerWidth <= 768) navLinks.classList.remove('nav-active');
+      });
+    });
+
+    // Scroll fade-in animation
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+</body>
+</html>
